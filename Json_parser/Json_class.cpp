@@ -1,5 +1,7 @@
-#pragma once;
+#pragma once
+
 #include "Json_class.h"
+#include <fstream>
 
 Json:: Json(std::string path) 
 {
@@ -26,7 +28,17 @@ bool Json::contains(const std::string& key) const
 }
 
 
-void Json::LoadFromFile(const std::string& key) {}
+void Json::LoadFromFile(const std::string& key) {
+	std::fstream json_file(key, std::ios::in);
+	if (!json_file.is_open()) 
+	{
+		 throw std::runtime_error("Failed to open file: " + fileName);
+	}
+	std::string content((std::istreambuf_iterator<char>(json_file)),
+		std::istreambuf_iterator<char>());
+	std::cout << content;
+
+}	
 
 
 void Json::print() const {}

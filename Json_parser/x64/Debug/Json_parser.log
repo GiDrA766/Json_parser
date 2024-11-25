@@ -1,0 +1,48 @@
+﻿  Json_class.cpp
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,38): error C2065: JsonValue: необъявленный идентификатор
+  (компиляция исходного файла "Json_class.cpp")
+  
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,27): error C2923: std::unique_ptr: "JsonValue" не является допустимым аргументом типа шаблон для параметра "_Ty"
+  (компиляция исходного файла "Json_class.cpp")
+  C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,38):
+   см. объявление "JsonValue"
+  
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,27): error C2976: std::unique_ptr: слишком мало аргументов шаблон
+  (компиляция исходного файла "Json_class.cpp")
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3172,7):
+   см. объявление "std::unique_ptr"
+  
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(16,17): error C3203: "unique_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+  (компиляция исходного файла "Json_class.cpp")
+  
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(17,27): error C3203: "unique_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+  (компиляция исходного файла "Json_class.cpp")
+  
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_class.cpp(35,55): error C2065: fileName: необъявленный идентификатор
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_class.cpp(35,28): error C2512: std::runtime_error: нет подходящего конструктора по умолчанию
+  C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_class.cpp(35,28):
+  std::runtime_error::runtime_error: нет подходящего конструктора по умолчанию
+  	C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_class.cpp(35,28):
+  	при попытке сопоставить список аргументов "()"
+  
+  Json_parser.cpp
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,38): error C2065: JsonValue: необъявленный идентификатор
+  (компиляция исходного файла "Json_parser.cpp")
+  
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,27): error C2923: std::unique_ptr: "JsonValue" не является допустимым аргументом типа шаблон для параметра "_Ty"
+  (компиляция исходного файла "Json_parser.cpp")
+  C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,38):
+   см. объявление "JsonValue"
+  
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,27): error C2976: std::unique_ptr: слишком мало аргументов шаблон
+  (компиляция исходного файла "Json_parser.cpp")
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3172,7):
+   см. объявление "std::unique_ptr"
+  
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(16,17): error C3203: "unique_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+  (компиляция исходного файла "Json_parser.cpp")
+  
+C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(17,27): error C3203: "unique_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+  (компиляция исходного файла "Json_parser.cpp")
+  
+  Создание кода...

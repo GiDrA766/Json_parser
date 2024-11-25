@@ -1,6 +1,7 @@
-﻿#include <iostream>
-
+﻿#pragma once
+#include <iostream>
+#include "json_class.h"
 int main()
 {
-    std::cout << "Hello World!\n";
+	Json file("C:\\Users\\tamam\\source\\repos\\Json_parser\\Json_parser\\test.json");
 }

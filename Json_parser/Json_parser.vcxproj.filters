@@ -21,6 +21,9 @@
     <ClCompile Include="Json_class.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="json_value.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json_class.h">
@@ -37,5 +40,8 @@
     <ResourceCompile Include="Json_parser.rc">
       <Filter>Файлы ресурсов</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data.json" />
   </ItemGroup>
 </Project>

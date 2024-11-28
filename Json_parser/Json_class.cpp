@@ -28,8 +28,8 @@ bool Json::contains(const std::string& key) const
 }
 
 
-void Json::LoadFromFile(const std::string& key) {
-	std::fstream json_file(key, std::ios::in);
+void Json::LoadFromFile(const std::string& fileName) {
+	std::fstream json_file(fileName, std::ios::in);
 	if (!json_file.is_open()) 
 	{
 		 throw std::runtime_error("Failed to open file: " + fileName);

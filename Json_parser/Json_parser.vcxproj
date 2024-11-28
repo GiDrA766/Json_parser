@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Json_class.cpp" />
     <ClCompile Include="Json_parser.cpp" />
+    <ClCompile Include="json_value.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json_class.h" />
@@ -138,6 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Json_parser.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

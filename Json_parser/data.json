@@ -1,0 +1,9 @@
+{
+  "file": true,
+  "int": 1,
+  "array": [
+    1,
+    "string",
+    {"nested":  true}
+  ]
+}

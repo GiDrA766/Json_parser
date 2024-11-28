@@ -1,48 +1,41 @@
 ﻿  Json_class.cpp
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,38): error C2065: JsonValue: необъявленный идентификатор
-  (компиляция исходного файла "Json_class.cpp")
-  
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,27): error C2923: std::unique_ptr: "JsonValue" не является допустимым аргументом типа шаблон для параметра "_Ty"
-  (компиляция исходного файла "Json_class.cpp")
-  C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,38):
-   см. объявление "JsonValue"
-  
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,27): error C2976: std::unique_ptr: слишком мало аргументов шаблон
-  (компиляция исходного файла "Json_class.cpp")
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3172,7):
-   см. объявление "std::unique_ptr"
-  
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(16,17): error C3203: "unique_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
-  (компиляция исходного файла "Json_class.cpp")
-  
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(17,27): error C3203: "unique_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
-  (компиляция исходного файла "Json_class.cpp")
-  
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_class.cpp(35,55): error C2065: fileName: необъявленный идентификатор
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_class.cpp(35,28): error C2512: std::runtime_error: нет подходящего конструктора по умолчанию
-  C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_class.cpp(35,28):
-  std::runtime_error::runtime_error: нет подходящего конструктора по умолчанию
-  	C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_class.cpp(35,28):
-  	при попытке сопоставить список аргументов "()"
-  
   Json_parser.cpp
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,38): error C2065: JsonValue: необъявленный идентификатор
-  (компиляция исходного файла "Json_parser.cpp")
-  
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,27): error C2923: std::unique_ptr: "JsonValue" не является допустимым аргументом типа шаблон для параметра "_Ty"
-  (компиляция исходного файла "Json_parser.cpp")
-  C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,38):
-   см. объявление "JsonValue"
-  
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(8,27): error C2976: std::unique_ptr: слишком мало аргументов шаблон
-  (компиляция исходного файла "Json_parser.cpp")
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\memory(3172,7):
-   см. объявление "std::unique_ptr"
-  
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(16,17): error C3203: "unique_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
-  (компиляция исходного файла "Json_parser.cpp")
-  
-C:\Users\tamam\source\repos\Json_parser\Json_parser\Json_value.h(17,27): error C3203: "unique_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
-  (компиляция исходного файла "Json_parser.cpp")
-  
+  json_value.cpp
   Создание кода...
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(11,57): error C2039: "unique_ptr": не является членом "std".
+  (компиляция исходного файла "json_value.cpp")
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\optional(30,1):
+       см. объявление "std"
+  
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(11,68): error C2275: "JsonValue": ожидается выражение вместо типа
+  (компиляция исходного файла "json_value.cpp")
+  
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(11,34): error C2974: "std::pair": недопустимый аргумент шаблон для "_Ty2", ожидается тип
+  (компиляция исходного файла "json_value.cpp")
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\utility(235,8):
+       см. объявление "std::pair"
+  
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(11,34): error C3203: "pair": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+  (компиляция исходного файла "json_value.cpp")
+  
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(11,79): error C2143: синтаксическая ошибка: отсутствие ";" перед ">"
+  (компиляция исходного файла "json_value.cpp")
+  
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(11,79): error C2059: синтаксическая ошибка: >
+  (компиляция исходного файла "json_value.cpp")
+  
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(11,80): error C2238: непредвиденные лексемы перед ";"
+  (компиляция исходного файла "json_value.cpp")
+  
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\json_value.cpp(13,12): error C2084: функция "JsonValue::JsonValue(const JsonValue &) noexcept(false)" уже имеет текст реализации
+      C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(22,2):
+      см. предыдущее определение "JsonValue::JsonValue"
+  
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\json_value.cpp(14,23): error C2084: функция "JsonValue &JsonValue::operator =(const JsonValue &) noexcept(false)" уже имеет текст реализации
+      C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(25,13):
+      см. предыдущее определение "JsonValue::operator ="
+  
+C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\json_value.cpp(17,23): error C2084: функция "JsonValue &JsonValue::operator =(JsonValue &&) noexcept" уже имеет текст реализации
+      C:\Users\arevt\source\repos\GiDrA766\Json_parser\Json_parser\Json_value.h(26,13):
+      см. предыдущее определение "JsonValue::operator ="
+  

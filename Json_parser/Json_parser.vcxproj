@@ -128,11 +128,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="Json_class.cpp" />
     <ClCompile Include="Json_parser.cpp" />
     <ClCompile Include="json_value.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="functions.h" />
     <ClInclude Include="json_class.h" />
     <ClInclude Include="Json_value.h" />
     <ClInclude Include="resource.h" />

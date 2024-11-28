@@ -2,10 +2,12 @@
 
 #include "Json_class.h"
 #include <fstream>
+#include <sstream>
 
 Json:: Json(std::string path) 
 {
-	this->LoadFromFile(path);
+	std::string text = this->LoadFromFile(path);
+
 }
 
 JsonValue& Json:: operator[](const std::string& key) 
@@ -28,15 +30,16 @@ bool Json::contains(const std::string& key) const
 }
 
 
-void Json::LoadFromFile(const std::string& fileName) {
+std::string Json::LoadFromFile(const std::string& fileName) {
 	std::fstream json_file(fileName, std::ios::in);
 	if (!json_file.is_open()) 
 	{
 		 throw std::runtime_error("Failed to open file: " + fileName);
 	}
-	std::string content((std::istreambuf_iterator<char>(json_file)),
-		std::istreambuf_iterator<char>());
-	std::cout << content;
+	std::ostringstream buffer;
+	buffer << json_file.rdbuf();
+	std::cout << buffer.str();	
+	return buffer.str();
 
 }	
 

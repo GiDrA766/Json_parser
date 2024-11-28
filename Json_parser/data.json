@@ -1,9 +1,12 @@
-{
-  "file": true,
-  "int": 1,
-  "array": [
-    1,
-    "string",
-    {"nested":  true}
+[
+  [
+    {
+      "find": 56
+    }
+  ],
+  [
+    {
+      "second": true
+    }
   ]
-}
+]

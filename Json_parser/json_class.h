@@ -18,7 +18,7 @@
 		//checking keys presence is json
 		bool contains(const std::string& key) const;
 
-		void LoadFromFile(const std::string& key);
+		std::string LoadFromFile(const std::string& key);
 		//print json
 		void print() const;
 	private:

@@ -8,12 +8,13 @@
 
 class JsonValue
 {
-private:
+public:
     using Object = std::vector<std::pair<std::string, JsonValue*>>;
     using Value = std::variant<std::string, long long, bool, double, std::nullptr_t, Object>;
     using Array = std::vector<Value>;
-
+private:
     std::variant<Value, Array, Object> data;
+    friend JsonValue parseJson(const std::string& text);
 public:
     JsonValue() = default;
     JsonValue(Value value);

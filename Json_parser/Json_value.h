@@ -9,7 +9,7 @@
 class JsonValue
 {
 public:
-    using Object = std::vector<std::pair<std::string, JsonValue*>>;
+    using Object = std::vector<std::pair<std::string, std::shared_ptr<JsonValue>>>;
     using Value = std::variant<std::string, long long, bool, double, std::nullptr_t, Object>;
     using Array = std::vector<Value>;
 private:
@@ -20,10 +20,15 @@ public:
     JsonValue(Value value);
     JsonValue(Array array);
 
-    JsonValue(JsonValue&& other);
+    JsonValue(JsonValue&& other) noexcept;
 
     // Copy constructor
     JsonValue(const JsonValue& other);
+	
+
+    //destructor
+	~JsonValue() noexcept;
+
 
     // Copy assignment operator
     JsonValue& operator=(const JsonValue& other);

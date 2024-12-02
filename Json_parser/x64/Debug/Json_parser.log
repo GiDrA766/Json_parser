@@ -1,4 +1,6 @@
-﻿  Json_class.cpp
+﻿  functions.cpp
+  Json_class.cpp
   Json_parser.cpp
+  json_value.cpp
   Создание кода...
   Json_parser.vcxproj -> C:\Users\tamam\source\repos\Json_parser\x64\Debug\Json_parser.exe

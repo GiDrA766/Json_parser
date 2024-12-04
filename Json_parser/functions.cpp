@@ -25,13 +25,13 @@ JsonValue parseJson(const std::string& text)
 		
 	}
 	if (typeid(json.data) == typeid(JsonValue::Object)) 
-		json.data = std::get<JsonValue::Object>(parseObject(text, position));
+		json.data = parseObject(text, position);
 	if (typeid(json.data) == typeid(JsonValue::Array))
 		json.data = parseArray(text, position);
 		return json;
 }
 
-std::variant<JsonValue::Value, JsonValue::Array> parseValue(const std::string& json, size_t& position)
+JsonValue::Value parseValue(const std::string& json, size_t& position)
 {
     SkipSpaces(json, position);
     char ch = json[position];
@@ -43,7 +43,7 @@ std::variant<JsonValue::Value, JsonValue::Array> parseValue(const std::string& j
         return parseArray(json, position);
     }
     else if (ch == '"') {
-        return parseString(json, position   );
+        return parseString(json, position);
     }
     else if (isdigit(ch) || ch == '-') {
         size_t start = position;
@@ -81,7 +81,7 @@ std::variant<JsonValue::Value, JsonValue::Array> parseValue(const std::string& j
 }
 
 
-JsonValue::Value parseObject(const std::string& json, size_t& position)
+JsonValue::Object parseObject(const std::string& json, size_t& position)
 {
     JsonValue::Object obj;
     position++;  // Skip the '{'
@@ -108,11 +108,11 @@ JsonValue::Value parseObject(const std::string& json, size_t& position)
         position++;  // Skip ':'
         SkipSpaces(json, position);
         if (json[position] == '[') {
-            JsonValue::Array value = parseArray(json, position);
+            JsonValue value = parseArray(json, position);
             obj.push_back({ key, std::make_shared<JsonValue>(value) });
         }
         else {
-            JsonValue::Value value = std::get<JsonValue::Value>(parseValue(json, position));
+            JsonValue value = parseValue(json, position);
             obj.push_back({ key, std::make_shared<JsonValue>(value) });
         }
         SkipSpaces(json, position);
@@ -130,9 +130,33 @@ JsonValue::Value parseObject(const std::string& json, size_t& position)
     return obj;
 }
 
-JsonValue::Array parseArray(const std::string& json, size_t& pos)
+JsonValue::Array parseArray(const std::string& json, size_t& position)
 {
-	return JsonValue::Array();
+	JsonValue::Array arr;
+    SkipSpaces(json, position);
+	if (json[position] == ']') {
+        position++;  // Empty object
+        return arr;
+	}
+    while (true) {
+        SkipSpaces(json, position);
+        JsonValue value;
+        value.data = parseValue(json, position);
+        arr.push_back(std::make_shared<JsonValue>(value));
+        SkipSpaces(json, position);
+		if (json[position] == ']') {
+			position++;  // End of array
+			break;
+		}
+		else if (json[position] == ',') {
+			position++;  // Skip the comma and continue
+		}
+		else {
+			throw std::runtime_error("Expected ',' or ']' in array");
+		}
+	}
+    return arr;
+
 }
 
 std::string parseString(const std::string& json, size_t& position)

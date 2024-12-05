@@ -14,8 +14,10 @@ public:
     using Object = std::vector<std::pair<std::string, std::shared_ptr<JsonValue>>>;
     using Array = std::vector<std::shared_ptr<JsonValue>>;
     using Value = std::variant<std::string, long long, bool, double, std::nullptr_t, Object, Array>;
+    enum class Type { Object, Array, Value, None};
 private:
     Value data;
+	Type type;
     friend JsonValue parseJson(const std::string& text);
 	friend JsonValue::Object parseObject(const std::string& json, size_t& pos);
     friend JsonValue::Array parseArray(const std::string& json, size_t& pos);
@@ -23,7 +25,7 @@ private:
     friend JsonValue::Value parseValue(const std::string& json, size_t& position);
     friend class Json;
 public:
-    JsonValue() = default;
+    JsonValue();
     JsonValue(Value value);
     JsonValue(Array array);
 

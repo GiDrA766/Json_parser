@@ -3,30 +3,33 @@
 #include "Json_class.h"
 #include <fstream>
 #include <sstream>
-
-Json:: Json(std::string path) 
+#include "functions.h"
+Json:: Json(std::string path, bool isfile) 
 {
 	std::string text = this->LoadFromFile(path);
+	file = parseJson(text);
 
 }
 
 JsonValue& Json:: operator[](const std::string& key) 
 {
 	// Access or insert the value for the given key
-	return file[key];
+	return file;
 }
 
 const JsonValue& Json:: operator[](const std::string& key) const {
 	// Check if the key exists using the contains method
-	if (this->contains(key)) {
-		return file.at(key);  // Safely return the value associated with the key
-	}
-	throw std::out_of_range("Key '" + key + "' not found in JSON.");
+	//if (this->contains(key)) {
+	//	return file.at(key);  // Safely return the value associated with the key
+	//}
+	//throw std::out_of_range("Key '" + key + "' not found in JSON.");
+	return file;
 }
 
 bool Json::contains(const std::string& key) const 
 {
-	return this->file.find(key) != this->file.end();
+	//return this->file.find(key) != this->file.end();
+	return true; //
 }
 
 
@@ -38,8 +41,9 @@ std::string Json::LoadFromFile(const std::string& fileName) {
 	}
 	std::ostringstream buffer;
 	buffer << json_file.rdbuf();
-	std::cout << buffer.str();	
-	return buffer.str();
+	std::string text = buffer.str();
+	std::cout << text;	
+	return text;
 
 }	
 

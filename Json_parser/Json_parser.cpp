@@ -3,5 +3,5 @@
 #include "json_class.h"
 int main()
 {
-	Json file("data.json");
+	Json file("data.json", true);
 }

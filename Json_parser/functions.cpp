@@ -3,7 +3,7 @@
 
 void SkipSpaces(const std::string& text, size_t& position)
 {
-	while (text.size() != position and (isspace(text[position]) == ' ' or text[position] == '\n'))
+	while (text.size() != position and (isspace(text[position]) == ' ' || text[position] == '\n' || text[position] == 32))
 		position++;
 }
 
@@ -15,20 +15,21 @@ JsonValue parseJson(const std::string& text)
 	switch (text[position]) 
 	{
 	case '{':
-		json.data = JsonValue::Object();
+		json.type = JsonValue::Type::Object;
 		break;
 	case '[':
-		json.data = JsonValue::Array();
+        json.type = JsonValue::Type::Array;
 		break;
 	default:
-		throw std::runtime_error("Invalid JSON format");
-		
+        json.type = JsonValue::Type::Value;
 	}
-	if (typeid(json.data) == typeid(JsonValue::Object)) 
+	if (json.type == JsonValue::Type::Object) 
 		json.data = parseObject(text, position);
-	if (typeid(json.data) == typeid(JsonValue::Array))
-		json.data = parseArray(text, position);
-		return json;
+    else if (json.type == JsonValue::Type::Array)
+        json.data = parseArray(text, position);
+    else
+        json.data = parseValue(text, position);
+	return json;
 }
 
 JsonValue::Value parseValue(const std::string& json, size_t& position)
@@ -36,13 +37,7 @@ JsonValue::Value parseValue(const std::string& json, size_t& position)
     SkipSpaces(json, position);
     char ch = json[position];
 
-    if (ch == '{') {
-        return parseObject(json, position);
-    }
-    else if (ch == '[') {
-        return parseArray(json, position);
-    }
-    else if (ch == '"') {
+    if (ch == '"') {
         return parseString(json, position);
     }
     else if (isdigit(ch) || ch == '-') {
@@ -107,12 +102,19 @@ JsonValue::Object parseObject(const std::string& json, size_t& position)
         }
         position++;  // Skip ':'
         SkipSpaces(json, position);
+        JsonValue value;
+
         if (json[position] == '[') {
-            JsonValue value = parseArray(json, position);
+            value.data = parseArray(json, position);
             obj.push_back({ key, std::make_shared<JsonValue>(value) });
         }
+        else if (json[position] == '{') 
+        {
+            value.data = parseObject(json, position);
+			obj.push_back({ key, std::make_shared<JsonValue>(value) });
+		}
         else {
-            JsonValue value = parseValue(json, position);
+            value.data = parseValue(json, position);
             obj.push_back({ key, std::make_shared<JsonValue>(value) });
         }
         SkipSpaces(json, position);
@@ -132,6 +134,7 @@ JsonValue::Object parseObject(const std::string& json, size_t& position)
 
 JsonValue::Array parseArray(const std::string& json, size_t& position)
 {
+    position++;
 	JsonValue::Array arr;
     SkipSpaces(json, position);
 	if (json[position] == ']') {
@@ -141,10 +144,21 @@ JsonValue::Array parseArray(const std::string& json, size_t& position)
     while (true) {
         SkipSpaces(json, position);
         JsonValue value;
-        value.data = parseValue(json, position);
-        arr.push_back(std::make_shared<JsonValue>(value));
-        SkipSpaces(json, position);
-		if (json[position] == ']') {
+
+		if (json[position] == '[') {
+			value.data = parseArray(json, position);
+			arr.push_back(std::make_shared<JsonValue>(value));
+		}
+		else if (json[position] == '{') {
+			value.data = parseObject(json, position);
+			arr.push_back(std::make_shared<JsonValue>(value));
+		}
+		else {
+			value.data = parseValue(json, position);
+			arr.push_back(std::make_shared<JsonValue>(value));
+		}
+		SkipSpaces(json, position);
+        if (json[position] == ']') {
 			position++;  // End of array
 			break;
 		}

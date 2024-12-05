@@ -8,7 +8,7 @@
 	
 	public:
 		Json() = default;
-		Json(std::string path);
+		Json(std::string path, bool is_file);
 		~Json() = default;
 
 		// getting value from key with reference, that can be changable
@@ -22,7 +22,7 @@
 		//print json
 		void print() const;
 	private:
-		std::map <std::string, JsonValue> file;
+		JsonValue file;
 
 	}; 
 

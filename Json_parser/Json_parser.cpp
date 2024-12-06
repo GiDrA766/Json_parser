@@ -1,7 +1,8 @@
 ﻿#pragma once
 #include <iostream>
-#include "json_class.h"
+#include "json_value.h"
 int main()
 {
-	Json file("data.json", true);
+	JsonValue json("data.json", true);
+	std::cout << json;
 }

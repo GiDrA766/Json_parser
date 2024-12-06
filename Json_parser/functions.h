@@ -16,4 +16,6 @@ JsonValue::Array parseArray(const std::string& json, size_t& pos);
 // Parse String
 std::string parseString(const std::string& json, size_t& pos);
 
+std::string LoadFromFile(const std::string& fileName);
 
+std::ostream& operator<<(std::ostream& os, const JsonValue& jsonValue);

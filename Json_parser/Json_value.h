@@ -45,6 +45,7 @@ public:
     // Assignment Operators
     JsonValue& operator=(const JsonValue& other);
     JsonValue& operator=(JsonValue&& other) noexcept;
+    JsonValue& operator=(const Value& value);
 
     // Utility Methods (optional)
     bool isObject() const;
@@ -52,12 +53,13 @@ public:
     bool isValue() const;
     bool isNull() const;
 
-    // operators of [] for objects
+    // operators[] for objects
     JsonValue& operator[](const std::string& key);
 	const JsonValue& operator[](const std::string& key) const;
     
-    // operator of [] for arrays
+    // operator[] for arrays
     JsonValue& operator[](const std::size_t& index);
 	const JsonValue& operator[](const std::size_t& index) const;
-    
+private:
+    static void printWithIndent(std::ostream& os, const JsonValue& jsonValue, int indentLevel);
 };

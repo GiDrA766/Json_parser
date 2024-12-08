@@ -270,63 +270,69 @@ const JsonValue& JsonValue::operator[](const size_t& index) const {
 }
 
 
-
 //output
 std::ostream& operator<<(std::ostream& os, const JsonValue& jsonValue) {
-    std::string indent(2, '\t');  // Create a string of tabs for indentation
+    JsonValue::printWithIndent(os, jsonValue, 0);
+    return os;
+}
+
+
+
+void JsonValue::printWithIndent(std::ostream& os, const JsonValue& jsonValue, int indentLevel)
+{
+    std::string indent(indentLevel, '\t');  // Create a string of tabs for indentation
 
     switch (jsonValue.type) {
     case JsonValue::Type::Object:
         os << "{\n";
-        for (const auto& pair : std::get<JsonValue::Object>(jsonValue.data)) {
-            os << "\"" << pair.first << "\": " << *pair.second;
-            if (&pair != &std::get<JsonValue::Object>(jsonValue.data).back()) {
-                os << ", ";
+        for (auto it = std::get<Object>(jsonValue.data).begin(); it != std::get<Object>(jsonValue.data).end(); ++it) {
+            os << indent << "  " << it->first << "\": ";
+            printWithIndent(os, *(it->second), indentLevel + 1);  // Increase indent level for nested objects
+            if (std::next(it) != std::get<Object>(jsonValue.data).end()) {
+                os << ",";
             }
-            os << "{\n";
-
+            os << "\n";
         }
         os << indent << "}";
         break;
 
     case JsonValue::Type::Array:
         os << "[\n";
-        for (const auto& item : std::get<JsonValue::Array>(jsonValue.data)) {
-            os << *item;
-            if (&item != &std::get<JsonValue::Array>(jsonValue.data).back()) {
-                os << ", ";
+        for (auto it = std::get<Array>(jsonValue.data).begin(); it != std::get<Array>(jsonValue.data).end(); ++it) {
+            os << indent <<"  ";
+            printWithIndent(os, **it, indentLevel + 1);  // Increase indent level for nested arrays
+            if (std::next(it) != std::get<Array>(jsonValue.data).end()) {
+                os << ",";
             }
             os << "\n";
-
         }
         os << indent << "]";
         break;
 
     case JsonValue::Type::Value:
-        std::visit([&os](const auto& value) {
-            if constexpr (std::is_same_v<std::decay_t<decltype(value)>, std::string>) {
-                os << "\"" << value << "\"";  // Print string values in quotes
-            }
-            else if constexpr (std::is_same_v<std::decay_t<decltype(value)>, long long>) {
-                os << value;  // Print integer values as they are
-            }
-            else if constexpr (std::is_same_v<std::decay_t<decltype(value)>, bool>) {
-                os << (value ? "true" : "false");  // Print booleans as true/false
-            }
-            else if constexpr (std::is_same_v<std::decay_t<decltype(value)>, double>) {
-                os << value;  // Print floating-point numbers as they are
-            }
-            else if constexpr (std::is_same_v<std::decay_t<decltype(value)>, std::nullptr_t>) {
-                os << "null";  // Print null values as "null"
-            }
-            }, jsonValue.data);  // Use std::visit to handle the variant types
-        break;
+            std::visit([&os](const auto& value) {
+                if constexpr (std::is_same_v<std::decay_t<decltype(value)>, std::string>) {
+                    os << "\"" << value << "\"";  // Print string values in quotes
+                }
+                else if constexpr (std::is_same_v<std::decay_t<decltype(value)>, long long>) {
+                    os << value;  // Print integer values as they are
+                }
+                else if constexpr (std::is_same_v<std::decay_t<decltype(value)>, bool>) {
+                    os << (value ? "true" : "false");  // Print booleans as true/false
+                }
+                else if constexpr (std::is_same_v<std::decay_t<decltype(value)>, double>) {
+                    os << value;  // Print floating-point numbers as they are
+                }
+                else if constexpr (std::is_same_v<std::decay_t<decltype(value)>, std::nullptr_t>) {
+                    os << "null";  // Print null values as "null"
+                }
+                }, jsonValue.data);  // Use std::visit to handle the variant types
+            break;
 
     case JsonValue::Type::None:
         os << "null";  // If the type is "None", output "null"
         break;
     }
 
-
-    return os;
 }
+

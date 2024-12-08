@@ -103,6 +103,22 @@ JsonValue& JsonValue::operator=(JsonValue&& other) noexcept {
     }
     return *this;
 }
+// operator = for value
+JsonValue& JsonValue::operator=(const Value& value) {
+    data = value;  // Assign the value to the variant
+    // Optionally, you can set the type here if needed
+    // For example, if you want to update the type based on the variant value:
+    if (std::holds_alternative<Object>(data)) {
+        type = Type::Object;
+    }
+    else if (std::holds_alternative<Array>(data)) {
+        type = Type::Array;
+    }
+    else {
+        type = Type::Value;
+    }
+    return *this;
+}
 
 // Utility Methods
 bool JsonValue::isObject() const {
